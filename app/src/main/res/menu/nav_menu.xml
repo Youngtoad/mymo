@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/list_memo"
+            android:icon="@drawable/baseline_list_black_24dp"
+            android:title="메모 목록"
+            />
+        <item
+            android:id="@+id/star"
+            android:icon="@drawable/baseline_star_black_24dp"
+            android:title="즐겨찾기"
+            />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/trash"
+            android:icon="@drawable/baseline_delete_white_24dp"
+            android:title="휴지통"
+            />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/baseline_settings_black_24dp"
+            android:title="설정"
+            />
+    </group>
+</menu>
