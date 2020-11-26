@@ -3,13 +3,13 @@ package com.example.desktop.mymo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +22,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         MyApplication.prefs.setString("email", "test@ajou.ac.kr")
         MyApplication.prefs.setString("name", "Youngtoad")
 
-
+        //어댑터 설정
+        var data:MutableList<Memo> = setData()
+        var adapter = MemoAdapter()
+        adapter.memoData = data
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -33,6 +38,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.baseline_menu_white_24dp)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
+    }
+
+    fun setData(): MutableList<Memo>{   //List형식의 데이터를 만드는 함수
+        var data:MutableList<Memo> = mutableListOf()
+        for(num in 1..10){
+            var title = "${num}번째 타이틀"
+            var memodata = Memo(num, title)
+            data.add(memodata)  //for문으로 생성된 데이터를 list에 add
+        }
+        return data //다 만들어진 후 return
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
