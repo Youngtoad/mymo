@@ -26,7 +26,10 @@ class EditActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
             android.R.id.home-> onBackPressed()
-            R.id.menu_store -> Snackbar.make(toolbar,"저장되었습니다!", Snackbar.LENGTH_SHORT).show()
+            R.id.menu_store -> {
+
+                Snackbar.make(toolbar,"저장되었습니다!", Snackbar.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
