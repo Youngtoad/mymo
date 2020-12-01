@@ -37,7 +37,7 @@
                     android:text="제목: " />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/edit_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -56,7 +56,7 @@
                 android:text="내용" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine3"
+                android:id="@+id/edit_contents"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:background="@drawable/border"
