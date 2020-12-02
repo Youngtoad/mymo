@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Memo")
 data class Memo(
-    @PrimaryKey val mid: Int,
-    @ColumnInfo(name = "title") val title: String?,
-    @ColumnInfo(name = "contents") val contents: String?
-)
+    @PrimaryKey(autoGenerate = true) val mid: Int,
+    @ColumnInfo(name = "title") var title: String?,
+    @ColumnInfo(name = "contents") var contents: String?
+){
+    constructor(): this(0,"", "")
+}
