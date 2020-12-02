@@ -39,7 +39,7 @@
         app:srcCompat="@drawable/baseline_add_white_24dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/mRecyclerView"
         android:layout_width="415dp"
         android:layout_height="604dp"
         app:layout_constraintBottom_toBottomOf="parent"
