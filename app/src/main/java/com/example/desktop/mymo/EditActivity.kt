@@ -19,7 +19,12 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
         setSupportActionBar(toolbar)
 
-
+        val addRunnable = Runnable {
+            val newMemo = Memo()
+            newMemo.title = edit_title.text.toString()
+            newMemo.contents = edit_contents.text.toString()
+            memoDb?.memoDao()?.insert(newMemo)
+        }
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)

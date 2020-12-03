@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,12 +31,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //어댑터 설정
         memoDb = MemoDatabase.getInstance(this)
-        mAdapter = MemoAdapter(this, memoList)
+        mAdapter = MemoAdapter(this, memoList){
+
+        }
 
         val r = Runnable {
             try {
                 memoList = memoDb?.memoDao()?.getAll()!!
-                mAdapter = MemoAdapter(this, memoList)
+                mAdapter = MemoAdapter(this, memoList){
+                    memo -> Toast.makeText(this,
+                    "ID:${memo.mid} 제목:${memo.title}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, EditActivity::class.java)
+                    intent.putExtra("mid", memo.mid)
+                    startActivity(intent)
+                }
                 mAdapter.notifyDataSetChanged()
 
                 mRecyclerView.adapter = mAdapter

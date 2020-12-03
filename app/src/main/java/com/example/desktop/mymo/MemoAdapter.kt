@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_memo.view.*
 
-class MemoAdapter(val context: Context, val memos: List<Memo>) :
+class MemoAdapter(val context: Context, val memos: List<Memo>, val itemClick: (Memo) -> Unit) :
     RecyclerView.Adapter<MemoAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_memo, parent, false)
-        return Holder(view)
+        return Holder(view, itemClick)
     }
 
     override fun getItemCount(): Int {
@@ -24,7 +24,7 @@ class MemoAdapter(val context: Context, val memos: List<Memo>) :
         holder?.bind(memos[position])
     }
 
-    inner class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    inner class Holder(itemView: View?, itemClick: (Memo) -> Unit) : RecyclerView.ViewHolder(itemView!!) {
         val midTv = itemView?.findViewById<TextView>(R.id.id_number)
         val titleTv = itemView?.findViewById<TextView>(R.id.text_title)
 
@@ -32,6 +32,8 @@ class MemoAdapter(val context: Context, val memos: List<Memo>) :
 
             midTv?.text = memo.mid.toString()
             titleTv?.text = memo.title.toString()
+
+            itemView.setOnClickListener{ itemClick(memo) }
         }
     }
 }
