@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.android.material.snackbar.Snackbar
@@ -19,11 +21,16 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
         setSupportActionBar(toolbar)
 
-        val addRunnable = Runnable {
-            val newMemo = Memo()
-            newMemo.title = edit_title.text.toString()
-            newMemo.contents = edit_contents.text.toString()
-            memoDb?.memoDao()?.insert(newMemo)
+        val et_title = findViewById<EditText>(R.id.edit_title)
+        val et_contents = findViewById<EditText>(R.id.edit_contents)
+
+        var mid = intent.getIntExtra("mid", 0)
+
+        if(mid != 0){
+            Snackbar.make(toolbar,"${mid}", Snackbar.LENGTH_SHORT).show()
+            val oldMemo = memoDb?.memoDao()?.get(mid)
+            et_title.setText(oldMemo?.title)
+            et_contents.setText(oldMemo?.contents)
         }
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

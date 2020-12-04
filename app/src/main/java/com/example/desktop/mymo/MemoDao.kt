@@ -11,6 +11,9 @@ interface MemoDao {
     @Query("SELECT * FROM memo")
     fun getAll(): List<Memo>
 
+    @Query("SELECT * FROM memo WHERE mid = (:ID)")
+    fun get(ID: Int): Memo
+
     @Query("SELECT * FROM memo WHERE mid IN (:memoIds)")
     fun loadAllByIds(memoIds: IntArray): List<Memo>
 
