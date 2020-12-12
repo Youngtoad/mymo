@@ -11,14 +11,16 @@ interface MemoDao {
     @Query("SELECT * FROM memo")
     fun getAll(): List<Memo>
 
-    @Query("SELECT * FROM memo WHERE mid = (:ID)")
+    @Query("SELECT * FROM memo WHERE mid = :ID")
     fun get(ID: Int): Memo
 
     @Query("SELECT * FROM memo WHERE mid IN (:memoIds)")
     fun loadAllByIds(memoIds: IntArray): List<Memo>
 
-    @Query("SELECT * FROM memo WHERE title LIKE :t AND " +
-            "contents LIKE :ct")
+    @Query("SELECT mid, title, contents FROM memo WHERE star = 'true'")
+    fun getStars(): List<Memo>
+
+    @Query("SELECT * FROM memo WHERE title LIKE :t AND contents LIKE :ct")
     fun findByName(t: String, ct: String): Memo
 
     @Insert(onConflict = REPLACE)

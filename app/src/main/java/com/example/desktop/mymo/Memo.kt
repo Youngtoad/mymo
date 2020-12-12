@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class Memo(
     @PrimaryKey(autoGenerate = true) val mid: Int,
     @ColumnInfo(name = "title") var title: String?,
-    @ColumnInfo(name = "contents") var contents: String?
+    @ColumnInfo(name = "contents") var contents: String?,
+    @ColumnInfo(name = "star") var star: Boolean
 ){
-    constructor(): this(0,"", "")
+    constructor(): this(0,"", "",false)
 }
